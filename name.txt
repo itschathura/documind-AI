@@ -1,0 +1,5 @@
+Generic name : AI-Powered Document Intelligence Platform
+
+Project/ App name : DocuMind AI
+
+Description : An AI-Powered Document Intelligence and Knowledge Retrieval Platform
