@@ -1,6 +1,11 @@
 from fastapi import FastAPI
+from app.core.config import settings
+from app.db.database import engine, Base
+from app.models import document  # registers the Document model
 
 from app.core.config import settings
+
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
