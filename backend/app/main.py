@@ -2,7 +2,8 @@ from fastapi import FastAPI
 
 from app.core.config import settings
 from app.db.database import engine, Base
-from app.models import document  # registers the Document model
+from app.models import document
+from backend.app.api import routes_documents  # registers the Document model
 
 Base.metadata.create_all(bind=engine)
 
@@ -11,7 +12,7 @@ app = FastAPI(
     version="0.1.0",
 )
 
-from app.api import routes_upload, routes_chat, routes_documents
+from app.api import routes_upload, routes_chat
 
 app.include_router(routes_upload.router, prefix="/documents", tags=["documents"])
 app.include_router(routes_chat.router, prefix="/chat", tags=["chat"])

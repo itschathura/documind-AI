@@ -13,6 +13,9 @@ class Settings(BaseSettings):
     ANTHROPIC_API_KEY: str = ""
     LLM_MODEL: str = "claude-sonnet-4-6"
 
+    UPLOAD_DIR: str = "./data/uploads"
+    MAX_UPLOAD_SIZE_MB: int = 25
+
     class Config:
         env_file = ".env"
         case_sensitive = True
