@@ -29,3 +29,19 @@ Answer:"""
         "answer": response.text,
         "sources": relevant_chunks,
     }
+
+
+def generate_summary(text: str) -> str:
+    """
+   full extract text and summary print
+    """
+    prompt = f"""Summarize the following document in 3-5 concise sentences.
+Focus on the key facts, purpose, and any important details.
+
+Document:
+{text}
+
+Summary:"""
+
+    response = _model.generate_content(prompt)
+    return response.text
