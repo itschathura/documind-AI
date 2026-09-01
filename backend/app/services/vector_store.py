@@ -3,9 +3,16 @@ import chromadb
 
 from app.core.config import settings
 
+
+# chromadb.Client() = in memeory temporary
+# PersistentClient = save in disk
 _client = chromadb.PersistentClient(path=settings.VECTOR_DB_PATH)
 
 # table ekk wage
+
+# create_collection(...)
+# get_or_create_collection = app eka restart > continue without erros
+
 _collection = _client.get_or_create_collection(name="documents")
 
 
