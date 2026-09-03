@@ -6,7 +6,7 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "DocuMind AI"
     ENV: str = "development"
 
-    ALLOWED_ORIGINS: List[str] = ["http://localhost:3000"]
+    ALLOWED_ORIGINS: List[str] = ["http://localhost:3000"] #checked
 
     DATABASE_URL: str = "postgresql://postgres:postgres@localhost:5432/documind"
 
