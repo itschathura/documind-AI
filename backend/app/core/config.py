@@ -12,7 +12,7 @@ class Settings(BaseSettings):
 
     ANTHROPIC_API_KEY: str = ""
     GEMINI_API_KEY: str = ""
-    LLM_MODEL: str = "gemini-3.6-flash"
+    LLM_MODEL: str = "gemini-flash-lite-latest"
 
     UPLOAD_DIR: str = "./data/uploads"
     MAX_UPLOAD_SIZE_MB: int = 25
