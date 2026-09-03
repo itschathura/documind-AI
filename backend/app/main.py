@@ -12,13 +12,13 @@ app = FastAPI(
     version="0.1.0",
 )
 
-# CORS — frontend (localhost:3000) ට backend (localhost:8000) call කරන්න allow කරනවා
+# CORS — only allow frontend origin with specific methods
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.ALLOWED_ORIGINS,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "DELETE"],
+    allow_headers=["Content-Type"],
 )
 
 from app.api import routes_upload, routes_chat, routes_documents
@@ -30,14 +30,9 @@ app.include_router(routes_documents.router, prefix="/documents", tags=["document
 
 @app.get("/")
 def root():
-    return {"message": f"{settings.PROJECT_NAME} backend is running", "env": settings.ENV}
+    return {"message": f"{settings.PROJECT_NAME} backend is running"}
 
 
 @app.get("/health")
 def health_check():
     return {"status": "ok"}
-
-
-@app.get("/yoyo")
-def yoyo():
-    return {"yoyo": settings.ENV}

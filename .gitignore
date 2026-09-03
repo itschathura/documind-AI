@@ -216,3 +216,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# DocuMind AI - uploaded files and vector database
+data/
+backend/.env

@@ -8,7 +8,7 @@ venv\Scripts\activate
 uvicorn app.main:app --reload 
 
 create nextjs project
-    npx create-next-app@latest frontend 
+    npx create-next-app@latest frontend
     node --version
 
     cd frontend

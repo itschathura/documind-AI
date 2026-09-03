@@ -8,7 +8,7 @@ genai.configure(api_key=settings.GEMINI_API_KEY)
 _model = genai.GenerativeModel(settings.LLM_MODEL)
 
 
-def answer_question(document_id: int, question: str) -> dict:
+def answer_question(document_id: str, question: str) -> dict:
     query_vector = embed_text([question])[0]
     relevant_chunks = search_similar_chunks(query_vector, document_id=document_id, top_k=3)
     context = "\n\n".join(relevant_chunks)

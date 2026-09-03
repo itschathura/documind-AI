@@ -16,7 +16,7 @@ _client = chromadb.PersistentClient(path=settings.VECTOR_DB_PATH)
 _collection = _client.get_or_create_collection(name="documents")
 
 
-def add_document_chunks(document_id: int, chunks: List[str], vectors: List[List[float]]) -> None:
+def add_document_chunks(document_id: str, chunks: List[str], vectors: List[List[float]]) -> None:
     """
     Document > chunks + vectors, .
     """
@@ -31,7 +31,7 @@ def add_document_chunks(document_id: int, chunks: List[str], vectors: List[List[
     )
 
 
-def search_similar_chunks(query_vector: List[float], document_id: int, top_k: int = 5) -> List[str]:
+def search_similar_chunks(query_vector: List[float], document_id: str, top_k: int = 5) -> List[str]:
     """
  ###########################
     """
@@ -41,3 +41,10 @@ def search_similar_chunks(query_vector: List[float], document_id: int, top_k: in
         where={"document_id": document_id},
     )
     return results["documents"][0]  # matched chunk texts list
+
+
+def delete_document_chunks(document_id: str) -> None:
+    """
+    Delete all chunks belonging to a specific document from ChromaDB.
+    """
+    _collection.delete(where={"document_id": document_id})

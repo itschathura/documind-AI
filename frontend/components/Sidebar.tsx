@@ -47,16 +47,18 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       )}
 
       <aside
-        className={`fixed md:static top-0 left-0 h-full w-64 bg-[var(--sidebar-bg)] border-r border-[var(--border-color)] z-50 flex flex-col transform transition-transform duration-200 ${
+        className={`fixed md:static top-0 left-0 h-full w-64 bg-[var(--sidebar-bg)] border-r border-[var(--border-color)] z-50 flex flex-col transform transition-transform duration-300 ease-in-out shadow-2xl md:shadow-none ${
           isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
         }`}
       >
-        <div className="flex items-center justify-between p-4 border-b border-[var(--border-color)] shrink-0">
-          <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <Home size={20} className="text-[var(--accent)]" />
-            <span className="font-semibold">DocuMind AI</span>
+        <div className="flex items-center justify-between p-5 border-b border-[var(--border-color)] shrink-0">
+          <a href="/" className="flex items-center gap-2 group transition-opacity">
+            <div className="w-8 h-8 rounded-lg bg-[var(--accent)]/10 flex items-center justify-center border border-[var(--accent)]/20 group-hover:bg-[var(--accent)]/20 transition-colors">
+              <Home size={16} className="text-[var(--accent)]" />
+            </div>
+            <span className="font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-gray-900 to-gray-500 dark:from-white dark:to-gray-400">DocuMind AI</span>
           </a>
-          <button onClick={onClose} className="md:hidden">
+          <button onClick={onClose} className="md:hidden text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
             <X size={20} />
           </button>
         </div>
@@ -70,13 +72,13 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 key={item.href}
                 href={item.href}
                 onClick={onClose}
-                className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
                   isActive
-                    ? "bg-[var(--accent)] text-white"
-                    : "hover:bg-black/5 dark:hover:bg-white/5"
+                    ? "bg-gradient-to-r from-[var(--accent)] to-[var(--accent-hover)] text-white shadow-md shadow-[var(--accent)]/20 translate-x-1"
+                    : "hover:bg-black/5 dark:hover:bg-white/5 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                 }`}
               >
-                <Icon size={18} />
+                <Icon size={18} className={isActive ? "text-white" : "opacity-70"} />
                 {item.label}
               </Link>
             );
@@ -96,21 +98,21 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 key={chat.id}
                 href={`/?chat=${chat.id}`}
                 onClick={onClose}
-                className={`group flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors ${
+                className={`group flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm transition-all duration-200 ${
                   activeChatId === chat.id
-                    ? "bg-[var(--accent)] text-white"
-                    : "hover:bg-black/5 dark:hover:bg-white/5"
+                    ? "glass-panel border-[var(--accent)]/30 text-[var(--accent)] shadow-sm font-medium translate-x-1"
+                    : "hover:bg-black/5 dark:hover:bg-white/5 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
                 }`}
               >
-                <MessageCircle size={15} className="shrink-0 opacity-70" />
+                <MessageCircle size={15} className={`shrink-0 ${activeChatId === chat.id ? "opacity-100" : "opacity-50"}`} />
                 <span className="truncate flex-1">{chat.title}</span>
                 <button
                   onClick={(e) => handleDeleteChat(e, chat.id)}
-                  className={`shrink-0 opacity-0 group-hover:opacity-100 transition-opacity ${
-                    activeChatId === chat.id ? "hover:text-red-200" : "hover:text-red-500"
+                  className={`shrink-0 opacity-0 group-hover:opacity-100 transition-all duration-200 hover:scale-110 ${
+                    activeChatId === chat.id ? "hover:text-red-400" : "hover:text-red-500"
                   }`}
                 >
-                  <Trash2 size={13} />
+                  <Trash2 size={14} />
                 </button>
               </Link>
             ))}

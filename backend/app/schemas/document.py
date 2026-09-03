@@ -4,7 +4,7 @@ from typing import Optional
 
 
 class DocumentOut(BaseModel):
-    id: int
+    id: str
     filename: str
     file_type: str
     status: str

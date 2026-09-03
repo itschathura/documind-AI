@@ -3,14 +3,15 @@
 import { useEffect, useState } from "react";
 import { FileText, Trash2, Loader2, MessageSquare } from "lucide-react";
 import Link from "next/link";
-import { listDocuments, deleteDocument, Document } from "@/lib/api";
+import { deleteDocument, Document } from "@/lib/api";
+import { getMyDocuments, removeMyDocument } from "@/lib/documentHistory";
 import ReactMarkdown from "react-markdown";
 
 export default function DocumentsPage() {
   const [documents, setDocuments] = useState<Document[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [deletingId, setDeletingId] = useState<number | null>(null);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   useEffect(() => {
     loadDocuments();
@@ -20,7 +21,7 @@ export default function DocumentsPage() {
     setLoading(true);
     setError(null);
     try {
-      const docs = await listDocuments();
+      const docs = getMyDocuments();
       setDocuments(docs);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to load documents");
@@ -29,10 +30,11 @@ export default function DocumentsPage() {
     }
   }
 
-  async function handleDelete(id: number) {
+  async function handleDelete(id: string) {
     setDeletingId(id);
     try {
       await deleteDocument(id);
+      removeMyDocument(id);
       setDocuments((prev) => prev.filter((doc) => doc.id !== id));
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to delete document");
