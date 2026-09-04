@@ -219,4 +219,5 @@ __marimo__/
 
 # DocuMind AI - uploaded files and vector database
 data/
+backend/data/
 backend/.env
