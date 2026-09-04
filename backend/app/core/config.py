@@ -6,7 +6,8 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "DocuMind AI"
     ENV: str = "development"
 
-    ALLOWED_ORIGINS: List[str] = ["http://localhost:3000"]
+    # Allow all origins for testing with Cloudflare Pages
+    ALLOWED_ORIGINS: List[str] = ["*"]
 
     DATABASE_URL: str
 
