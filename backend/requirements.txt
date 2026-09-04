@@ -15,8 +15,6 @@ python-multipart==0.0.9
 
 # RAG / embeddings / vector store
 chromadb>=1.0.0
-sentence-transformers==3.1.1
-
 # LLM
 anthropic==0.34.2
 

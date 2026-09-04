@@ -1,13 +1,21 @@
+import google.generativeai as genai
 from typing import List
-from sentence_transformers import SentenceTransformer
+from app.core.config import settings
 
-# Model eka parak load karala, avoid slow
-_model = SentenceTransformer("all-MiniLM-L6-v2")
+genai.configure(api_key=settings.GEMINI_API_KEY)
 
 
 def embed_text(chunks: List[str]) -> List[List[float]]:
     """
-    Text chunks into    list  ,,, replace vector
+    Text chunks into list  ,,, replace vector using Gemini API
     """
-    embeddings = _model.encode(chunks)
-    return embeddings.tolist()
+    if not chunks:
+        return []
+        
+    result = genai.embed_content(
+        model="models/text-embedding-004",
+        content=chunks
+    )
+    
+    # When passing a list of chunks, result['embedding'] is a list of vectors
+    return result['embedding']
