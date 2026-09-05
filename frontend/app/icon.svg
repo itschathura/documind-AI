@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" />
+      <stop offset="50%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#4338ca" />
+    </linearGradient>
+    <linearGradient id="sparkleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c084fc" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Purple Circle Background -->
+  <circle cx="32" cy="32" r="30" fill="url(#purpleGrad)" />
+  <circle cx="32" cy="32" r="29" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" />
+
+  <!-- Clean Document Icon -->
+  <path d="M21 16C21 14.8954 21.8954 14 23 14H35.5L43 21.5V48C43 49.1046 42.1046 50 41 50H23C21.8954 50 21 49.1046 21 48V16Z" fill="#FFFFFF" />
+  
+  <!-- Document Fold -->
+  <path d="M35 14V20C35 21.1046 35.8954 22 37 22H43L35 14Z" fill="#E0E7FF" />
+
+  <!-- Intelligence / Text Lines -->
+  <path d="M26 27H34" stroke="#6366f1" stroke-width="2.2" stroke-linecap="round" />
+  <path d="M26 33H38" stroke="#6366f1" stroke-width="2.2" stroke-linecap="round" />
+  <path d="M26 39H33" stroke="#6366f1" stroke-width="2.2" stroke-linecap="round" />
+
+  <!-- Glowing AI Sparkle Star -->
+  <path d="M38.5 40L39.8 36.5L41.1 40L44.6 41.3L41.1 42.6L39.8 46.1L38.5 42.6L35 41.3L38.5 40Z" fill="url(#sparkleGrad)" />
+</svg>
