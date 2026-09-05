@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Upload, Loader2, Send, FileText, Bot, User, Sparkles, ChevronDown } from "lucide-react";
 import ReactMarkdown from "react-markdown";
@@ -14,7 +14,7 @@ const SUGGESTED_QUESTIONS = [
   "Are there any dates or numbers I should know?",
 ];
 
-export default function Home() {
+function HomeContent() {
   const searchParams = useSearchParams();
 
   const [documents, setDocuments] = useState<Document[]>([]);
@@ -307,5 +307,13 @@ export default function Home() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div className="flex-1 flex items-center justify-center"><Loader2 className="animate-spin text-[var(--accent)]" size={28} /></div>}>
+      <HomeContent />
+    </Suspense>
   );
 }
