@@ -84,7 +84,7 @@ async def upload_document(file: UploadFile = File(...), db: Session = Depends(ge
         logger.error(f"Failed to process document {doc_id}: {e}", exc_info=True)
         doc.status = "failed"
         db.commit()
-        raise HTTPException(status_code=500, detail="Failed to process document. Please try again or use a different file.")
+        raise HTTPException(status_code=500, detail=f"Failed to process document: {str(e)}")
 
     return {
         "id": doc.id,

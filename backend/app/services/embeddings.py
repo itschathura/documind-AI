@@ -13,7 +13,7 @@ def embed_text(chunks: List[str]) -> List[List[float]]:
         return []
         
     result = genai.embed_content(
-        model="models/text-embedding-004",
+        model="models/gemini-embedding-001",
         content=chunks
     )
     
